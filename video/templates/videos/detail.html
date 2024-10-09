@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>{{ video.title }}</title>
+</head>
+<body>
+    <h1>{{ video.title }}</h1>
+
+    <h2>Search in Subtitles</h2>
+    <form method="get" action="/video/{{ video.id }}/search/">
+        <input type="text" name="query" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
+
+    <video width="600" controls>
+        <source src="{{ video.video_file.url }}" type="video/mp4">
+
+        {% if subtitle_url %}
+        <track kind="subtitles" src="{{ subtitle_url }}" srclang="{{ subtitles.language }}" label="English" default>
+        {% endif %}
+    </video>
+</body>
+</html>
